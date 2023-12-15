@@ -1,0 +1,22 @@
+https://zhuanlan.zhihu.com/p/341922650
+Horovod多机多卡分布式并行训练部署
+
+https://blog.csdn.net/qq_47058489/article/details/125980505
+Horovod 基础知识（官网）
+
+
+https://github.com/taishan1994/pytorch-distributed-NLP
+https://www.zhihu.com/question/473840666
+业界有哪些易用的分布式训练框架?
+https://zhuanlan.zhihu.com/p/628022953
+一文搞定分布式训练：dataparallel、distirbuted、deepspeed、accelerate、transformers、horovod
+
+
+https://blog.csdn.net/mygugu/article/details/123476759
+Deep Learning分布式训练1---Horovod with Pytorch
+
+https://xv44586.github.io/2022/07/06/horovod-multi-nodes/index.html
+训练加速篇（3）horovod之多机多卡
+
+https://www.jianshu.com/p/794ed892ff1d
+分布式训练之Horovod

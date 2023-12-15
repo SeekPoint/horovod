@@ -1,0 +1,61 @@
+
+(hv_dev) amd00@MZ32-00:~/yk_repo/horovod$ git clone --recursive  https://github.com/SeekPoint/horovod
+
+
+amd00@MZ32-00:~/yk_repo/horovod$ python -m venv hv_dev
+amd00@MZ32-00:~/yk_repo/horovod$ . hv_dev/bin/activate
+(hv_dev) amd00@MZ32-00:~/yk_repo/horovod$
+
+
+python setup.py build
+python setup.py install
+
+rm -rf build/
+
+pip install torchvision==0.13.1 torch==2.0.1 ==此版本不匹配 引起    Failed to load image Python extension
+https://stackoverflow.com/questions/75555648/failed-to-load-image-python-extension
+参考https://pypi.org/project/torchvision/
+
+===不指定torchvision版本，可能导致torch被自动升级到最新版本，从而触发后续编译错误
+
+HOROVOD_WITH_PYTORCH=1 HOROVOD_WITHOUT_TENSORFLOW=1 pip install -v -e .  @@===torch重新安装后，需要重新运行
+HOROVOD_WITHOUT_TENSORFLOW=1 必须指定，如果没有安装tf!
+
+
+
+(hv_dev) amd00@MZ32-00:~/yk_repo/horovod$
+pip install torchvision==0.15.0 torch==2.0.1  ==match
+HOROVOD_WITH_PYTORCH=1 HOROVOD_WITHOUT_TENSORFLOW=1 pip install -v -e .
+
+
+目前卡在！！！！
+
+(hv_dev) amd00@MZ32-00:~/yk_repo/horovod/examples/pytorch$ horovodrun -np 3 python pytorch_mnist.py
+No protocol specified
+[1,2]<stderr>:[2023-12-15 22:55:10.363304: E /home/amd00/yk_repo/horovod/horovod/common/operations.cc:697] [2]: Horovod background loop uncaught exception: Internal error. Requested device context manager with GPU device but not compiled with CUDA.
+[1,0]<stderr>:[2023-12-15 22:55:10.363262: E /home/amd00/yk_repo/horovod/horovod/common/operations.cc:697] [0]: Horovod background loop uncaught exception: Internal error. Requested device context manager with GPU device but not compiled with CUDA.
+[1,0]<stderr>:[MZ32-00:11753] *** Process received signal ***
+[1,0]<stderr>:[MZ32-00:11753] Signal: Aborted (6)
+
+
+
+
+(hv_dev) amd00@MZ32-00:~/yk_repo/horovod$ horovodrun --check-build
+Horovod v0.28.1:
+
+Available Frameworks:
+    [ ] TensorFlow
+    [X] PyTorch
+    [ ] MXNet
+
+Available Controllers:
+    [X] MPI
+    [X] Gloo
+
+Available Tensor Operations:
+    [ ] NCCL
+    [ ] DDL
+    [ ] CCL
+    [X] MPI
+    [X] Gloo
+(hv_dev) amd00@MZ32-00:~/yk_repo/horovod$
